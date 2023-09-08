@@ -10,6 +10,7 @@ const loadMoreBtn = document.querySelector('.load-more');
 let page = 1;
 let currentQuery = '';
 let hasSearched = false;
+let lightbox;
 
 const BASE_URL = 'https://pixabay.com/api/';
 const API_KEY = '39300767-f0d69d4d22ce0cdc344bb6eaf';
@@ -90,8 +91,12 @@ function renderImages(images) {
 
   gallery.insertAdjacentHTML('beforeend', html);
 
-  const lightbox = new SimpleLightbox('.lightbox');
-  lightbox.refresh();
+    if (lightbox) {
+    lightbox.destroy();
+  }
+ lightbox = new SimpleLightbox('.lightbox');
+//   const lightbox = new SimpleLightbox('.lightbox');
+//   lightbox.refresh();
 
   const { height: cardHeight } = document
     .querySelector('.gallery')
